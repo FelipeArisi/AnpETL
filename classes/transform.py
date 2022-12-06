@@ -4,6 +4,14 @@ import re
 from datetime import datetime
 import locale
 
+
+def getMonth(month: str):
+    try: 
+        return datetime.strptime(month, '%B').month
+    except:
+        return None
+
+
 class Transform:
     def __init__(self, pivot: Pivot):
         self.pivot = pivot
@@ -28,11 +36,11 @@ class Transform:
                     aux[year] = y
                     aux[uf] = i
                     aux[product]  = j
-                    df = pd.concat([df, aux], axis=1)
+                    df = pd.concat([df, aux], axis=0)
                     self.pivot.clearFilter(year)
 
-        df.Month = df.Month.apply(lambda x : datetime.strptime(x, '%B').month) 
-        #df['Date'] = list(zip(df.ANO, df.Month))
+
+        df.Month = df.Month.apply(lambda x : getMonth(x)) 
         df['Date'] = df.ANO + '-' +  df.Month.astype(str)
 
         regex = '\(.*?\)'

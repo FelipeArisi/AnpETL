@@ -23,12 +23,11 @@ transform = Transform(pivot)
 db = DataBase()
 
 df = transform.createDF('UN. DA FEDERAÇÃO', 'PRODUTO', 'ANO')
-
-df.to_excel("output.xlsx")  
+  
 db.insert(df)
 
 
 pivotDiesel = Pivot(excel.wb, "B133")
 transformDiesel = Transform(pivotDiesel)
-dfDiesel = transformDiesel.createDF('UN. DA FEDERAÇÃO', 'PRODUTO', 'ANO')
-dfDiesel.to_excel("outputdfDiesel.xlsx")  
+dfDiesel = transformDiesel.createDF('UN. DA FEDERAÇÃO', 'PRODUTO', 'ANO') 
+
